@@ -191,7 +191,7 @@ var deck_url       = "bit.ly/tonsky-fr",
     last_question  = null,
     // slides_prefix  = "http://s.tonsky.me/conferences/2017.06%20FrontendConf/jpegs/",
     slides_prefix  = "jpegs/",
-    slides         = ["110.jpg", "120.jpg", "122.jpg", "124.jpg", "126.jpg", "130.jpg", "140.jpg", "142.jpg", "144.jpg", "146.jpg", "150.jpg", "160.jpg", "162.jpg", "164.jpg", "170.jpg", "210.jpg", "220.jpg", "225.jpg", "230.jpg", "240.jpg", "280.jpg", "310.jpg", "320.jpg", "330.jpg", "340.jpg", "350.jpg", "360.jpg", "370.jpg", "380.jpg", "390.jpg", "410.jpg", "420.jpg", "430.jpg", "450.jpg", "455.jpg", "457.jpg", "460.jpg", "461.jpg", "462.jpg", "463.jpg", "464.jpg", "465.jpg", "466.jpg", "480.jpg", "510.jpg", "512.jpg", "514.jpg", "516.jpg", "518.jpg", "520.jpg", "522.jpg", "524.jpg", "526.jpg", "527.jpg", "528.jpg", "530.jpg", "532.jpg", "540.jpg", "550.jpg", "610.jpg", "612.jpg", "614.jpg", "616.jpg", "618.jpg", "620.jpg", "622.jpg", "624.jpg", "626.jpg", "628.jpg", "630.jpg", "632.jpg", "634.jpg", "636.jpg", "643.jpg", "645.jpg", "647.jpg", "650.jpg", "660.jpg", "670.jpg", "672.jpg", "674.jpg", "676.jpg", "680.jpg", "710.jpg", "720.jpg", "725.jpg", "730.jpg", "740.jpg", "750.jpg", "760.jpg", "770.jpg", "810.jpg", "812.jpg", "814.jpg", "816.jpg", "818.jpg", "820.jpg", "825.jpg", "830.jpg", "832.jpg", "834.jpg", "836.jpg", "838.jpg", "840.jpg", "850.jpg", "860.jpg", "862.jpg", "870.jpg", "872.jpg", "880.jpg", "882.jpg", "884.jpg", "910.jpg", "915.jpg", "920.jpg", "930.jpg", "940.jpg", "942.jpg", "944.jpg", "946.jpg", "948.jpg", "960.jpg"],
+    slides         = ["010.jpg", "020.jpg", "030.jpg", "040.jpg", "050.jpg", "060.jpg", "070.jpg", "080.jpg", "090.jpg", "100.jpg", "110.jpg", "120.jpg", "130.jpg", "140.jpg", "142.jpg", "144.jpg", "146.jpg", "150.jpg", "160.jpg", "170.jpg", "180.jpg", "190.jpg", "200.jpg", "210.jpg", "220.jpg", "230.jpg", "240.jpg", "250.jpg", "260.jpg", "270.jpg", "280.jpg", "290.jpg", "300.jpg", "310.jpg", "320.jpg", "330.jpg", "340.jpg", "350.jpg", "360.jpg", "370.jpg", "380.jpg", "384.jpg", "387.jpg", "390.jpg", "400.jpg", "410.jpg", "420.jpg", "430.jpg", "440.jpg", "450.jpg", "460.jpg", "470.jpg", "480.jpg", "490.jpg", "500.jpg", "510.jpg", "520.jpg", "530.jpg", "540.jpg", "550.jpg", "560.jpg", "562.jpg", "564.jpg", "566.jpg", "568.jpg", "570.jpg", "572.jpg", "574.jpg", "576.jpg", "578.jpg", "580.jpg", "581.jpg", "582.jpg", "584.jpg", "586.jpg", "587.jpg", "588.jpg", "620.jpg", "630.jpg", "640.jpg", "650.jpg", "660.jpg", "670.jpg", "680.jpg", "690.jpg", "700.jpg", "710.jpg", "720.jpg", "730.jpg", "740.jpg", "750.jpg", "760.jpg", "770.jpg", "780.jpg", "784.jpg", "787.jpg", "999.jpg"],
     slides_ratio = 16/9,
     slides_loaded = 0,
     slides_failed = 0,
@@ -388,7 +388,7 @@ class Deck extends Component {
                       style: { width:  deck_width, 
                                height: deck_height, 
                                left:   (screen_width - deck_width) / 2,
-                               top:    (screen_height - deck_height) / 2 }},
+                               top:    statusbar_height + (screen_height - deck_height) / 2 }},
              slides.map((name, pos) => {
                return h(Slide, { key: name, slide: name, pos: pos });}))
   }
@@ -404,7 +404,7 @@ const GoBack = () => {
     h("div", { key: "go_back", 
                class: "go go_back",
                style: { width:  (screen_width - deck_width) / 2 + deck_width * 0.33333333,
-                        top:    (screen_height - deck_height) / 2,
+                        top:    statusbar_height + (screen_height - deck_height) / 2,
                         height: deck_height },
                onclick: () => change_slide(-1) });
 }
@@ -415,7 +415,7 @@ const GoForward = () => {
     h("div", { key: "go_forward",
                class: "go go_forward",
                style: { width:  (screen_width - deck_width) / 2 + deck_width * 0.33333333,
-                        top:    (screen_height - deck_height) / 2,
+                        top:    statusbar_height + (screen_height - deck_height) / 2,
                         height: deck_height },
                onclick: () => change_slide(1) });
 }
@@ -452,9 +452,10 @@ const StatusBar = (props) => {
   return h("div", { class: "status" },
            h("div",  { class: "status-likes" }, "" + likes_count),
            h("div",  { class: connected ? "status-online" : "status-offline" }, "" + online),
+           h("div",  { class: "status-slide" }, slides[current_slide_idx]),
            is_speaker ? h("span", { class: "status-url" }, 
                           h("a", {href:"http://" + deck_url, target: "_blank"}, deck_url)) : null,
-           h("span", { class: "status-question" }, last_question));
+           h("span", { class: "status-question" }, last_question || "<тут будет последний вопрос>"));
 }
 
 

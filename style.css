@@ -44,15 +44,16 @@ body { background: #f4f4f4; color: #58656E; }
 .go_back { left: 0; }
 .go_forward { right: 0; }
 
-.status { position: absolute; width: 100%; bottom: 0; background-color: #58656E; color: white; height: 40px; line-height: 40px; overflow: hidden; }
+.status { position: absolute; width: 100%; top: 0; background-color: #58656E; color: white; height: 40px; line-height: 40px; overflow: hidden; }
 
-.status-likes, .status-online, .status-offline, .status-url, .status-question { background-repeat: no-repeat; background-position: 0 0; }
-.status-likes, .status-online, .status-offline { display: inline-block; }
+.status-likes, .status-online, .status-offline, .status-slide, .status-url, .status-question { background-repeat: no-repeat; background-position: 0 0; }
+.status-likes, .status-online, .status-offline, .status-slide { display: inline-block; }
 .status-url, .status-question { padding: 11px 25px 11px 35px;  }
 
 .status-likes    { width: 70px; background-image: url("icons/heart.svg"); padding-left: 45px; }
 .status-online   { width: 75px; background-image: url("icons/online.svg"); padding-left: 50px; }
 .status-offline  { width: 75px; background-image: url("icons/offline.svg"); padding-left: 50px; }
+.status-slide    { width: 125px; background-image: url("icons/slide.svg"); padding-left: 50px; }
 .status-url      { background-image: url("icons/url.svg"); padding-left: 60px; }
 .status-url > a  { color: inherit; text-decoration: none; border-bottom: 2px solid #78858E; }
 .status-url > a:hover { border-color: currentColor; }
