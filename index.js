@@ -221,7 +221,9 @@ if (!user_id) {
   localStorage.setItem("user_id", user_id);
 }
 console.log("user_id =", user_id);
-  
+if (is_speaker) {
+  history.replaceState(null, null, location.pathname);
+}
     
 // CLOCK SKEW
 
